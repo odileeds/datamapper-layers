@@ -57,7 +57,7 @@ where:
   - `geojson` - the URL of the GeoJSON file containing the data
   - `name` - the title of the dataset
   - `desc` - a description of the dataset (can contain HTML)
-  - `owner` - a key for the owner of the dataset
+  - `owner` - a key for the owner of the dataset. At the moment the only use of this has been to add an "Edit" link to the bottom of feature popups when the owner is set to `osm`.
   - `url` - an optional URL for an explanation of the dataset
   - `credit` - either a string showing the copyright statement or an object containing:
     - `text` - the string showing the copyright statement
