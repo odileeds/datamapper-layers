@@ -67,7 +67,7 @@ where:
     - `text` - the display text of the license e.g. `"OGL v3"`
     - `url` - a link to the license terms
     - `derivatives` - an optional boolean that says if this layer has a license that allows derivative data. Defaults to `false`.
-  - `size` - the size of the GeoJSON data in bytes
+  - `size` - the size of the GeoJSON data in bytes. The aim is to give the end-user an indication of the file size of a layer before they try to load it.
   - `date` - the date the layer was last updated
   - `colour` - a hex/rgb colour to use for the layer (layers have one colour)
   - `centre` - the latitude and longitude of the data layer centre (allows basic location-sensitive searching through layers without having loaded the layers)
