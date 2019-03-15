@@ -75,26 +75,26 @@ It is also possible to create a choropleth map e.g.:
 
 ```JSON
 {
-	"geojson": "https://mapper.odileeds.org/layers/imd-leeds.geojson",
-	"name": "Leeds indices of multiple deprivation",
-	"desc": "Indices of Multiple Deprivation (IMDs) by LSOA for 2015",
-	"url": "http://opendatacommunities.org/resource?uri=http%3A%2F%2Fopendatacommunities.org%2Fdata%2Fsocietal-wellbeing%2Fimd%2Findices",
-	"owner": "dclg",
-	"format": {
-	  "type": "choropleth",
-	  "inverse": true,
-	  "key":"2015 decile"
-	},
-	"credit":{
-		"text": "&copy; Department for Communities and Local Government",
-		"src": "DCLG"
-	},
-	"licence": {
-		"text": "OGL v3",
-		"url": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
-	},
-	"size": 537667,
-	"colour": "#D73058"
+  "geojson": "https://mapper.odileeds.org/layers/imd-leeds.geojson",
+  "name": "Leeds indices of multiple deprivation",
+  "desc": "Indices of Multiple Deprivation (IMDs) by LSOA for 2015",
+  "url": "http://opendatacommunities.org/resource?uri=http%3A%2F%2Fopendatacommunities.org%2Fdata%2Fsocietal-wellbeing%2Fimd%2Findices",
+  "owner": "dclg",
+  "format": {
+    "type": "choropleth",
+    "inverse": true,
+    "key":"2015 decile"
+  },
+  "credit": {
+    "text": "&copy; Department for Communities and Local Government",
+    "src": "DCLG"
+  },
+  "licence": {
+    "text": "OGL v3",
+    "url": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+  },
+  "size": 537667,
+  "colour": "#D73058"
 }
 ```
 
