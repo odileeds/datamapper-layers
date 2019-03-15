@@ -8,7 +8,7 @@ At [ODI Leeds](https://odileeds.org/) (Open Data Institute Node in Leeds) we wor
 
 The primary aim of the Data Mapper project was to make it possible to show multiple geographic data layers, from multiple sources, on the same map. This work grew out of the Urban Commons/Common Ground project (with the [University of Leeds](https://lssi.leeds.ac.uk), [Leeds Love It Share It](http://baumanlyons.co.uk/news/updateleeds-love-it-share-it), and [Leeds City Lab](https://leedscitylab.wordpress.com/)) and the ethos that emerged from those project was to avoid creating or adding new gatekeepers of data. We wanted the data to be as open as possible but we also wanted to make it easy for others to build their own tools by re-using some of the building blocks. So the Data Mapper is really a two-part project: one side is the display of geographic data on a slippy map, the other is a way of sharing data layers in a decentralised way.
 
-## Sharing layers
+## Philosophy of sharing layers
 
 ### A layer
 
@@ -21,4 +21,77 @@ We wanted the actual data behind a layer to be stored in a GeoJSON file hosted o
 Once you have lots of layers you quickly realise that you need an index of them. We could have done this with a database but opted to store the index in a *JSON* file so that it would be very easy to share with others. This doesn't stop people from using a *JSON* index file to populate their own database for their own purposes. As we were working with several different data stores we decided to have the concept of multiple index files, in multiple locations, that could be independently curated (by publishers) and brought together. This has a couple of benefits:
   - Publishers could keep the metadata and data up-to-date without needing to ask permission from a central service;
   - Those creating tools that would use the layers could mix-and-match which publishers/platforms they wanted to get data from.
-By going down this route we distribute the storage of the data, metadata, and indexes of data layers. This decentralised design mimicks some of the advantages of the web and means that others can build their own tools on top of it without needing permission.
+
+By going down this route we distribute the storage of the data, metadata, and indexes of data layers. This decentralised design mimicks some of the advantages of the web and means that others can build their own tools on top of it without needing permission from us; we don't become a gatekeeper.
+
+## Format
+
+### Layer
+
+A layer is defined by some standard metadata in a *JSON* file. Below is an example:
+
+```JSON
+{
+  "geojson": "layers/brownfield-bradford.geojson",
+  "name": "Bradford Council brownfield land",
+  "desc": "A visualisation of the <a href='https://datamillnorth.org/dataset/bradford-brownfield-register'>Bradford Metropolitan Borough Council brownfield land register</a> by <a href='https://odileeds.org/'>ODI Leeds</a>.","url":"https://datamillnorth.org/dataset/bradford-brownfield-register",
+  "owner": "bradford",
+  "credit": {
+    "text": "&copy; Bradford Metropolitan Borough Council",
+    "src":"Bradford Council"
+  },
+  "license": {
+    "text": "OGL v3",
+    "url":"https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+  },
+  "size": 810294,
+  "colour": "#CE906F",
+  "popup":"function(f){ var history = ''; var hist = f.properties.PlanningHistory.split(/\\|/); for (var h = 0; h < hist.length; h++){ if(h > 0){ history += ', '; } history += '[<a href=\"'+hist[h]+'\">'+h+'</a>]'; }; return '<h3>%SiteNameAddress%</h3><p>' + (f.properties.DevelopmentDescription ? f.properties.DevelopmentDescription + '<br />' : '') + '<strong>Ownership:</strong> %OwnershipStatus%<br /><strong>Planning permission:</strong> %PlanningStatus%<br /><strong>Permission date:</strong> %PermissionDate%<br /><strong>Minimum net dwellings:</strong> %MinNetDwellings%<br /><strong>Hazardous substances:</strong> ' + (f.properties.HazardousSubstances ? f.properties.HazardousSubstances : 'none listed') + '<br /><strong>Area:</strong> %Hectares% ha' + (f.properties.DateUpdate ? '<br /><strong>Last updated:</strong> %DateUpdate%.' : '') + (f.properties.PlanningHistory ? '<br /><strong>Planning history</strong>: ' + (history) + '' : '') + '</p><p class=\"edit\"><a href=\"%SiteplanURL%\">View on the %OrganisationLabel% site plan map</a></p>';}"
+}
+```
+
+where:
+  - ***geojson*** is the URL of the GeoJSON file containing the data
+  - ***name*** is the title of the dataset
+  - ***desc*** is a description of the dataset (can contain HTML)
+  - ***owner*** is a key for the owner of the dataset
+  - ***url*** is an optional URL for an explanation of the dataset
+  - ***credit*** is an object containing:
+    - ***text*** which is the string showing the copyright statement
+    - ***src*** is a short version of the publisher's name
+  - ***license*** is an object containing:
+    - ***text** is the display text of the license e.g. "OGL v3"
+    - ***url*** is a link to the license terms
+  - ***size*** is the size of the GeoJSON data in bytes
+  - ***colour*** is a hex/rgb colour to use for the layer (layers have one colour)
+  - ***popup*** is either a string with replacement keys (that will be available within the "properties" object of a feature in the GeoJSON, or a Javascript function that builds a string
+  
+It is also possible to create a choropleth map e.g.:
+
+```JSON
+{
+	"geojson": "https://mapper.odileeds.org/layers/imd-leeds.geojson",
+	"name": "Leeds indices of multiple deprivation",
+	"desc": "Indices of Multiple Deprivation (IMDs) by LSOA for 2015",
+	"url": "http://opendatacommunities.org/resource?uri=http%3A%2F%2Fopendatacommunities.org%2Fdata%2Fsocietal-wellbeing%2Fimd%2Findices",
+	"owner": "dclg",
+	"format": { "type": "choropleth", "inverse": true, "key":"2015 decile" },
+	"credit":{
+		"text": "&copy; Department for Communities and Local Government",
+		"src": "DCLG"
+	},
+	"licence": {
+		"text": "OGL v3",
+		"url": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+	},
+	"size": 537667,
+	"odbl": false,
+	"colour": "#D73058"
+}
+```
+
+where:
+  - ***format*** is an object:
+    - ***type*** should be "choropleth"
+    - ***key*** the GeoJSON-feature property to use for the opacity scaling. This should be a number based property.
+    - ***inverse*** is a boolean flag to change which way the opacity should be applied. When true, smaller numbers have less opacity. When false, larger values have less opacity.
