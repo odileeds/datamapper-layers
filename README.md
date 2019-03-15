@@ -123,6 +123,6 @@ An index *JSON* file is formatted as follows:
 }
 ```
 
-Each layer is given a unique key. This should be unique across all layers (not just your own layers) so it is a good idea to use namespace-like prefixes to these keys. In Data Mapper these unique keys are used to build sharable links to specific views with specific layers.
+Each layer is given a unique key e.g. `odileeds-brownfield-barnsley` in the example above. This should be unique across all layers (not just your own layers) so it is a good idea to use namespace-like prefixes to these keys. In Data Mapper these unique keys are used to build sharable links to specific views with specific layers.
 
 Each layer can then be defined as an object using the same format as an individual layer above, or you can add a `metadata` key which points to a URL where the rest of the metadata can be found. Any keys/values found in the `metadata` URL will over-ride any keys you set in the index file as it is considered the definitive source.
