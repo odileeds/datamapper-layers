@@ -43,10 +43,10 @@ A layer is defined by some standard metadata in a *JSON* file. Below is an examp
   },
   "license": {
     "text": "OGL v3",
-    "url":"https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+    "url":"https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+    "derivatives": false
   },
   "size": 810294,
-  "odbl": false,
   "centre": [53.79620,-1.53370],
   "colour": "#CE906F",
   "popup":"function(f){ var history = ''; var hist = f.properties.PlanningHistory.split(/\\|/); for (var h = 0; h < hist.length; h++){ if(h > 0){ history += ', '; } history += '[<a href=\"'+hist[h]+'\">'+h+'</a>]'; }; return '<h3>%SiteNameAddress%</h3><p>' + (f.properties.DevelopmentDescription ? f.properties.DevelopmentDescription + '<br />' : '') + '<strong>Ownership:</strong> %OwnershipStatus%<br /><strong>Planning permission:</strong> %PlanningStatus%<br /><strong>Permission date:</strong> %PermissionDate%<br /><strong>Minimum net dwellings:</strong> %MinNetDwellings%<br /><strong>Hazardous substances:</strong> ' + (f.properties.HazardousSubstances ? f.properties.HazardousSubstances : 'none listed') + '<br /><strong>Area:</strong> %Hectares% ha' + (f.properties.DateUpdate ? '<br /><strong>Last updated:</strong> %DateUpdate%.' : '') + (f.properties.PlanningHistory ? '<br /><strong>Planning history</strong>: ' + (history) + '' : '') + '</p><p class=\"edit\"><a href=\"%SiteplanURL%\">View on the %OrganisationLabel% site plan map</a></p>';}"
@@ -65,11 +65,11 @@ where:
   - `license` - an object containing:
     - `text` - the display text of the license e.g. `"OGL v3"`
     - `url` - a link to the license terms
+    - `derivatives` - an optional boolean that says if this layer has a license that allows derivative data. Defaults to `false`.
   - `size` - the size of the GeoJSON data in bytes
   - `colour` - a hex/rgb colour to use for the layer (layers have one colour)
   - `centre` - the latitude and longitude of the data layer centre (allows basic location-sensitive searching through layers without having loaded the layers)
-  - `odbl` - a boolean that says if this layer has a license that allows derivative data
-  - `popup` - either a string with replacement keys (that will be available within the "properties" object of a feature in the GeoJSON, or a Javascript function that builds a string
+  - `popup` - either a string with replacement keys (that will be available within the `properties` object of a feature in the GeoJSON, or a Javascript function that builds a string. If nothing is provided, a popup will contain a table of key/value pairs from the `properties` object of the feature.
   
 It is also possible to create a choropleth map e.g.:
 
@@ -90,7 +90,6 @@ It is also possible to create a choropleth map e.g.:
 		"url": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
 	},
 	"size": 537667,
-	"odbl": false,
 	"colour": "#D73058"
 }
 ```
