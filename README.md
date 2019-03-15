@@ -35,6 +35,7 @@ A layer is defined by some standard metadata in a *JSON* file. Below is an examp
   "geojson": "layers/brownfield-bradford.geojson",
   "name": "Bradford Council brownfield land",
   "desc": "A visualisation of the <a href='https://datamillnorth.org/dataset/bradford-brownfield-register'>Bradford Metropolitan Borough Council brownfield land register</a> by <a href='https://odileeds.org/'>ODI Leeds</a>.","url":"https://datamillnorth.org/dataset/bradford-brownfield-register",
+  "url": "https://www.bradford.gov.uk/planning-and-building-control/planning-policy/the-brownfield-register/",
   "owner": "bradford",
   "credit": {
     "text": "&copy; Bradford Metropolitan Borough Council",
@@ -45,6 +46,7 @@ A layer is defined by some standard metadata in a *JSON* file. Below is an examp
     "url":"https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
   },
   "size": 810294,
+  "odbl": false,
   "colour": "#CE906F",
   "popup":"function(f){ var history = ''; var hist = f.properties.PlanningHistory.split(/\\|/); for (var h = 0; h < hist.length; h++){ if(h > 0){ history += ', '; } history += '[<a href=\"'+hist[h]+'\">'+h+'</a>]'; }; return '<h3>%SiteNameAddress%</h3><p>' + (f.properties.DevelopmentDescription ? f.properties.DevelopmentDescription + '<br />' : '') + '<strong>Ownership:</strong> %OwnershipStatus%<br /><strong>Planning permission:</strong> %PlanningStatus%<br /><strong>Permission date:</strong> %PermissionDate%<br /><strong>Minimum net dwellings:</strong> %MinNetDwellings%<br /><strong>Hazardous substances:</strong> ' + (f.properties.HazardousSubstances ? f.properties.HazardousSubstances : 'none listed') + '<br /><strong>Area:</strong> %Hectares% ha' + (f.properties.DateUpdate ? '<br /><strong>Last updated:</strong> %DateUpdate%.' : '') + (f.properties.PlanningHistory ? '<br /><strong>Planning history</strong>: ' + (history) + '' : '') + '</p><p class=\"edit\"><a href=\"%SiteplanURL%\">View on the %OrganisationLabel% site plan map</a></p>';}"
 }
