@@ -47,6 +47,7 @@ A layer is defined by some standard metadata in a *JSON* file. Below is an examp
   },
   "size": 810294,
   "odbl": false,
+  "centre": [53.79620,-1.53370],
   "colour": "#CE906F",
   "popup":"function(f){ var history = ''; var hist = f.properties.PlanningHistory.split(/\\|/); for (var h = 0; h < hist.length; h++){ if(h > 0){ history += ', '; } history += '[<a href=\"'+hist[h]+'\">'+h+'</a>]'; }; return '<h3>%SiteNameAddress%</h3><p>' + (f.properties.DevelopmentDescription ? f.properties.DevelopmentDescription + '<br />' : '') + '<strong>Ownership:</strong> %OwnershipStatus%<br /><strong>Planning permission:</strong> %PlanningStatus%<br /><strong>Permission date:</strong> %PermissionDate%<br /><strong>Minimum net dwellings:</strong> %MinNetDwellings%<br /><strong>Hazardous substances:</strong> ' + (f.properties.HazardousSubstances ? f.properties.HazardousSubstances : 'none listed') + '<br /><strong>Area:</strong> %Hectares% ha' + (f.properties.DateUpdate ? '<br /><strong>Last updated:</strong> %DateUpdate%.' : '') + (f.properties.PlanningHistory ? '<br /><strong>Planning history</strong>: ' + (history) + '' : '') + '</p><p class=\"edit\"><a href=\"%SiteplanURL%\">View on the %OrganisationLabel% site plan map</a></p>';}"
 }
@@ -66,6 +67,7 @@ where:
     - `url` - a link to the license terms
   - `size` - the size of the GeoJSON data in bytes
   - `colour` - a hex/rgb colour to use for the layer (layers have one colour)
+  - `centre` - the latitude and longitude of the data layer centre (allows basic location-sensitive searching through layers without having loaded the layers)
   - `odbl` - a boolean that says if this layer has a license that allows derivative data
   - `popup` - either a string with replacement keys (that will be available within the "properties" object of a feature in the GeoJSON, or a Javascript function that builds a string
   
@@ -121,6 +123,15 @@ An index *JSON* file is formatted as follows:
     "name": "Barnsley Council brownfield land",
     "metadata": "https://mapper.odileeds.org/layers/meta/brownfield-barnsley.json",
     "credit":"Barnsley Council"
+  },
+  "dataworks-62fad7cc-3d21-4a0f-9402-e3e65ae15ef5": {
+    "name":"Local Wildlife Sites: Local Wildlife Sites.json",
+    "size": 9107636,
+    "centre": [53.75524,-1.94559],
+    "credit": {
+      "src": "Calderdale Council"
+    },
+    "metadata": "https://mapper.odileeds.org/layers/meta/dataworks-62fad7cc-3d21-4a0f-9402-e3e65ae15ef5.json"
   }
 }
 ```
