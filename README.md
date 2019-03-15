@@ -51,20 +51,21 @@ A layer is defined by some standard metadata in a *JSON* file. Below is an examp
 ```
 
 where:
-  - ***geojson*** is the URL of the GeoJSON file containing the data
-  - ***name*** is the title of the dataset
-  - ***desc*** is a description of the dataset (can contain HTML)
-  - ***owner*** is a key for the owner of the dataset
-  - ***url*** is an optional URL for an explanation of the dataset
-  - ***credit*** is an object containing:
-    - ***text*** which is the string showing the copyright statement
-    - ***src*** is a short version of the publisher's name
-  - ***license*** is an object containing:
-    - ***text** is the display text of the license e.g. "OGL v3"
-    - ***url*** is a link to the license terms
-  - ***size*** is the size of the GeoJSON data in bytes
-  - ***colour*** is a hex/rgb colour to use for the layer (layers have one colour)
-  - ***popup*** is either a string with replacement keys (that will be available within the "properties" object of a feature in the GeoJSON, or a Javascript function that builds a string
+  - `geojson` - the URL of the GeoJSON file containing the data
+  - `name` - the title of the dataset
+  - `desc` - a description of the dataset (can contain HTML)
+  - `owner` - a key for the owner of the dataset
+  - `url` - an optional URL for an explanation of the dataset
+  - `credit` - either a string showing the copyright statement or an object containing:
+    - `text` - the string showing the copyright statement
+    - `src` - a short version of the publisher's name
+  - `license` - an object containing:
+    - `text` - the display text of the license e.g. `"OGL v3"`
+    - `url` - a link to the license terms
+  - `size` - the size of the GeoJSON data in bytes
+  - `colour` - a hex/rgb colour to use for the layer (layers have one colour)
+  - `odbl` - a boolean that says if this layer has a license that allows derivative data
+  - `popup` - either a string with replacement keys (that will be available within the "properties" object of a feature in the GeoJSON, or a Javascript function that builds a string
   
 It is also possible to create a choropleth map e.g.:
 
@@ -91,7 +92,37 @@ It is also possible to create a choropleth map e.g.:
 ```
 
 where:
-  - ***format*** is an object:
-    - ***type*** should be "choropleth"
-    - ***key*** the GeoJSON-feature property to use for the opacity scaling. This should be a number based property.
-    - ***inverse*** is a boolean flag to change which way the opacity should be applied. When true, smaller numbers have less opacity. When false, larger values have less opacity.
+  - `format` - an object:
+    - `type` - should be "choropleth"
+    - `key` - the GeoJSON-feature property to use for the opacity scaling. This should be a number based property.
+    - `inverse` - a boolean flag to change which way the opacity should be applied. When set to `true`, smaller numbers have less opacity. When `false`, larger values have less opacity.
+
+### Indexes
+
+An index *JSON* file is formatted as follows:
+
+```JSON
+{
+  "odileeds-bmdc-brownfield-land-register": {
+    "name": "Bradford Council brownfield land",
+    "metadata": "https://mapper.odileeds.org/layers/meta/bmdc-brownfield-land-register.json",
+    "credit":"Bradford Council"
+  },
+  "odileeds-bradford-food-premises": {
+    "name": "Bradford food premises public register",
+    "metadata": "https://mapper.odileeds.org/layers/meta/fsa-bradford.json",
+    "credit": {
+      "src": "Food Standards Agency"
+    }
+  },
+  "odileeds-brownfield-barnsley": {
+    "name": "Barnsley Council brownfield land",
+    "metadata": "https://mapper.odileeds.org/layers/meta/brownfield-barnsley.json",
+    "credit":"Barnsley Council"
+  }
+}
+```
+
+Each layer is given a unique key. This should be unique across all layers (not just your own layers) so it is a good idea to use namespace-like prefixes to these keys. In Data Mapper these unique keys are used to build sharable links to specific views with specific layers.
+
+Each layer can then be defined as an object using the same format as an individual layer above, or you can add a `metadata` key which points to a URL where the rest of the metadata can be found. Any keys/values found in the `metadata` URL will over-ride any keys you set in the index file as it is considered the definitive source.
