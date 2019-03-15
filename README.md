@@ -24,6 +24,9 @@ Once you have lots of layers you quickly realise that you need an index of them.
 
 By going down this route we distribute the storage of the data, metadata, and indexes of data layers. This decentralised design mimicks some of the advantages of the web and means that others can build their own tools on top of it without needing permission from us; we don't become a gatekeeper.
 
+![Diagram](/filestructure.png "Example of the file structure.")
+A diagram showing how an application finds GeoJSON layers of data. It first calls a number of index files (from 1 to many). Each index file contains a hash of layers indexed by unique keys. An individual layer will either include a `geojson` key that points to a URL or will include a `metadata` key that points to a URL that contains a `geojson` key pointing to the GeoJSON URL.
+
 ## Defining formats for sharing
 
 ### A layer
