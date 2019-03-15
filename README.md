@@ -69,7 +69,7 @@ where:
     - `derivatives` - an optional boolean that says if this layer has a license that allows derivative data. Defaults to `false`.
   - `size` - the size of the GeoJSON data in bytes. The aim is to give the end-user an indication of the file size of a layer before they try to load it.
   - `date` - the date the layer was last updated
-  - `colour` - a hex/rgb colour to use for the layer (layers have one colour)
+  - `colour` - a hex/rgb/CSS-named colour to use for the layer e.g. `#D73058` or `wheat`
   - `centre` - the latitude and longitude of the data layer centre (allows basic location-sensitive searching through layers without having loaded the layers)
   - `popup` - either a string with replacement keys (that will be available within the `properties` object of a feature in the GeoJSON, or a Javascript function that builds a string. If nothing is provided, a popup will contain a table of key/value pairs from the `properties` object of the feature.
   
