@@ -24,9 +24,9 @@ Once you have lots of layers you quickly realise that you need an index of them.
 
 By going down this route we distribute the storage of the data, metadata, and indexes of data layers. This decentralised design mimicks some of the advantages of the web and means that others can build their own tools on top of it without needing permission from us; we don't become a gatekeeper.
 
-## Format
+## Defining formats for sharing
 
-### Layer
+### A layer
 
 A layer is defined by some standard metadata in a *JSON* file. Below is an example:
 
@@ -97,7 +97,7 @@ where:
     - `key` - the GeoJSON-feature property to use for the opacity scaling. This should be a number based property.
     - `inverse` - a boolean flag to change which way the opacity should be applied. When set to `true`, smaller numbers have less opacity. When `false`, larger values have less opacity.
 
-### Indexes
+### Indexes of layers
 
 An index *JSON* file is formatted as follows:
 
