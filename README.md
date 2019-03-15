@@ -80,7 +80,11 @@ It is also possible to create a choropleth map e.g.:
 	"desc": "Indices of Multiple Deprivation (IMDs) by LSOA for 2015",
 	"url": "http://opendatacommunities.org/resource?uri=http%3A%2F%2Fopendatacommunities.org%2Fdata%2Fsocietal-wellbeing%2Fimd%2Findices",
 	"owner": "dclg",
-	"format": { "type": "choropleth", "inverse": true, "key":"2015 decile" },
+	"format": {
+	  "type": "choropleth",
+	  "inverse": true,
+	  "key":"2015 decile"
+	},
 	"credit":{
 		"text": "&copy; Department for Communities and Local Government",
 		"src": "DCLG"
