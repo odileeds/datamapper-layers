@@ -36,7 +36,6 @@ A layer is defined by some standard metadata in a *JSON* file. Below is an examp
   "name": "Bradford Council brownfield land",
   "desc": "A visualisation of the <a href='https://datamillnorth.org/dataset/bradford-brownfield-register'>Bradford Metropolitan Borough Council brownfield land register</a> by <a href='https://odileeds.org/'>ODI Leeds</a>.","url":"https://datamillnorth.org/dataset/bradford-brownfield-register",
   "url": "https://www.bradford.gov.uk/planning-and-building-control/planning-policy/the-brownfield-register/",
-  "owner": "bradford",
   "credit": {
     "text": "&copy; Bradford Metropolitan Borough Council",
     "src":"Bradford Council"
@@ -58,7 +57,6 @@ where:
   - `geojson` - the URL of the GeoJSON file containing the data
   - `name` - the title of the dataset
   - `desc` - a description of the dataset (can contain HTML)
-  - `owner` - a key for the owner of the dataset. At the moment the only use of this has been to add an "Edit" link to the bottom of feature popups when the owner is set to `osm`.
   - `url` - an optional URL for an explanation of the dataset
   - `credit` - either a string showing the copyright statement or an object containing:
     - `text` - the string showing the copyright statement
@@ -81,7 +79,6 @@ It is also possible to create a choropleth map e.g.:
   "name": "Leeds indices of multiple deprivation",
   "desc": "Indices of Multiple Deprivation (IMDs) by LSOA for 2015",
   "url": "http://opendatacommunities.org/resource?uri=http%3A%2F%2Fopendatacommunities.org%2Fdata%2Fsocietal-wellbeing%2Fimd%2Findices",
-  "owner": "dclg",
   "format": {
     "type": "choropleth",
     "inverse": true,
